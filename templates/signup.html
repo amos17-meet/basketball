@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SingUp</title>
+  <meta charset="utf-­‐8"> 
+  <meta name=“viewport” content=“width= device-width, initial scale=1.0”> 
+  <!-- Latest compiled and minified CSS --> 
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> 
+  <!-- jQuery library --> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+  <!-- Latest compiled JavaScript --> 
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+</head>
+<body>
+<h1>Sing Up Here</h1>
+
+<div class = 'flash'>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+</div>
+
+
+
+
+<div class="container-fluid">
+<form role="form" action="{{url_for('signup')}}" method="post">
+
+
+
+<div class="row">
+	<div class="col-md-6">
+		<div class="form-group">
+  			<label for="user">Full Name:</label>
+  			<input type="text" name="name" class="form-control" >
+
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+    	<div class="form-group">
+      		<label for="user">Email:</label>
+      		<input type="email" name="email" class="form-control" >
+    	</div>
+	</div>
+</div>
+
+
+
+
+<div class="row">
+	<div class="col-md-6">
+    	<div class="form-group">
+      		<label for="user">Password:</label>
+      		<input type="password" name="password" class="form-control" >
+    	</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-md-6">
+    	<div class="form-group">
+      		<label for="user"> Confirm password:</label>
+      		<input type="password" name="confirm_password" class="form-control" >
+    	</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+    	<div class="form-group">
+      		<label for="user"> Nick Name:</label>
+      		<input type="text" name="nickname" class="form-control" >
+    	</div>
+	</div>
+</div>
+
+<input type="submit" value="Create Account">
+
+
+</body>
+</html>

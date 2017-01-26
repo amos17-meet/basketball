@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LogIn</title>
+    <meta charset="utf-­‐8"> 
+    <meta name=“viewport” content=“width= device-width, initial scale=1.0”> 
+    <!-- Latest compiled and minified CSS --> 
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> 
+    <!-- jQuery library --> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+    <!-- Latest compiled JavaScript --> 
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+</head>
+<body>
+<h1>Log In here</h1>
+
+<div class = 'flash'>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+</div>
+
+
+<form action="{{ url_for('login') }}" method='post'>
+	Email Address:<br>
+	<input type="email" name="email"><br>
+	password:<br>
+	<input type="password" name="password">
+	<input type="submit" value="Login">
+</form>
+
+<a href="{{ url_for('signup') }}" value=Cancel class="btn btn-info">Sign Up Here</a>
+
+</body>
+</html>

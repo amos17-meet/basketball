@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Create_player</title>
+  <meta charset="utf-­‐8"> 
+  <meta name=“viewport” content=“width= device-width, initial scale=1.0”> 
+  <!-- Latest compiled and minified CSS --> 
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> 
+  <!-- jQuery library --> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+  <!-- Latest compiled JavaScript --> 
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+</head>
+<body>
+<h1> Create New Player</h1>
+
+<div class = 'flash'>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+</div>
+
+
+
+
+<div class="container-fluid">
+<form role="form" action="{{url_for('create_player')}}" method="post">
+
+
+
+<div class="row">
+	<div class="col-md-6">
+		<div class="form-group">
+  			<label for="user">Player's Name:</label>
+  			<input type="text" name="name" class="form-control" >
+
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+    	<div class="form-group">
+      		<label for="user">Player's Position:</label>
+      		<input type="emtextail" name="position" class="form-control" >
+    	</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-md-6">
+    	<div class="form-group">
+      		<label for="user">%P3:</label>
+      		<input type="text" name="three_points" class="form-control" >
+    	</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-md-6">
+    	<div class="form-group">
+      		<label for="user"> %PG:</label>
+      		<input type="text" name="two_points" class="form-control" >
+    	</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+    	<div class="form-group">
+      		<label for="user"> One on One ability (1-10):</label>
+      		<input type="text" name="one_on_one" class="form-control" >
+    	</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+    	<div class="form-group">
+      		<label for="user"> defense ability (1-10):</label>
+      		<input type="text" name="defense" class="form-control" >
+    	</div>
+	</div>
+</div>
+
+<input type="submit" value="Create Player">
+</body>
+</html>
