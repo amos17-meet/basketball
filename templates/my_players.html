@@ -26,19 +26,24 @@
     {% endwith %}
 </div>
 
-<div>
+<div class="container-fluid">
 	<ul>
 		{%for player in players%}
+        <div class="row">
+            <div class="col-md-2">
+            <a href="{{url_for('player', player_id = player.id)}}">
 			<li> <p>{{player.name}}</p></li>
+            </a>
+            </div>
+        </div>
 		{%endfor%}
 	</ul>
-	
+</div>
 
 
 
 
 
-
-
+</div>
 </body>
 </html>

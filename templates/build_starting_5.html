@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>build</title>
+    <link rel="stylesheet" href="styles/styles.css">
     <meta charset="utf-­‐8"> 
     <meta name=“viewport” content=“width= device-width, initial scale=1.0”> 
     <!-- Latest compiled and minified CSS --> 
@@ -10,6 +11,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
     <!-- Latest compiled JavaScript --> 
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+
+</script>
 </head>
 <body>
 <h1>build starting 5</h1>
@@ -29,11 +32,12 @@
 
 </div>
 
-
+<div class="container-fluid">
 <a href="{{ url_for('create_player') }}" value=Cancel class="btn btn-info">Create Player</a>
 <br>
 <a href="{{ url_for('starting_5s') }}" value=Cancel class="btn btn-info">My starting 5</a>
 <br>
 <a href="{{ url_for('my_players') }}" value=Cancel class="btn btn-info">My players</a>
+</div>
 </body>
 </html>

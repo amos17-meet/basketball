@@ -138,6 +138,47 @@ def my_players():
 
 
 
+@app.route("/player/<int:player_id>")
+def player(player_id):
+	if 'email' in login_session:
+		coach=session.query(Coach).filter_by(email=login_session['email']).first()
+		player=session.query(Player).filter_by(id=player_id).first()
+		coach_players=coach.players
+		if player in coach_players:
+			return render_template('player.html', player=player)
+		else:
+			redirect('my_players')
+
+@app.route("/edit_player/<int:player_id>", methods=['GET','POST'])
+def edit_player(player_id):
+	if 'email' in login_session:
+		coach=session.query(Coach).filter_by(email=login_session['email']).first()
+		player=session.query(Player).filter_by(id=player_id).first()
+		if request.method=='GET':
+			return render_template('edit_player.html', player=player)
+		else:
+			new_name=request.form['name']
+			new_player_position=request.form['position']
+			new_two_points=request.form['two_points']
+			new_three_points=request.form['three_points']
+			new_one_on_one=request.form['one_on_one']
+			new_defense=request.form['defense']
+			player.name=new_name
+			player.player_position=new_player_position
+			player.two_points=new_two_points
+			player.three_points=tnew_hree_points
+			player.one_on_one=new_one_on_one
+			player.defense=new_defense
+			session.commit()
+			return redirect('player', player_id=player.id)
+
+
+
+		
+
+
+
+
 def verify_password(email, password):
 	coach = session.query(Coach).filter_by (email=email).first()
 	if not coach or not coach.verify_password(password):

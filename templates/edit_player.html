@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>edit_player</title>
+	<meta charset="utf-­‐8"> 
+  <meta name=“viewport” content=“width= device-width, initial scale=1.0”> 
+  <!-- Latest compiled and minified CSS --> 
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> 
+  <!-- jQuery library --> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+  <!-- Latest compiled JavaScript --> 
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+</head>
+<body>
+<div class="container-fluid">
+<h1>{{player.name}}</h1>
+<div class = 'flash'>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+</div>
+<form role="form" action="{{ url_for('edit_player', player_id=player.id) }}" method="post">
+
+
+
+<div class="row">
+	<div class="col-md-2">
+		<div class="form-group">
+  			<label for="user">Player's Name:</label>
+  			<input type="text" name="name" class="form-control" value="{{ player.name}}" >
+
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-2">
+    	<div class="form-group">
+      		<label for="user">Player's Position:</label>
+      		<input type="emtextail" name="position" class="form-control" value="{{ player.player_position}}" >
+    	</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-md-2">
+    	<div class="form-group">
+      		<label for="user">%P3:</label>
+      		<input type="text" name="three_points" class="form-control" value="{{ player.three_points}}"  >
+    	</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-md-2">
+    	<div class="form-group">
+      		<label for="user"> %PG:</label>
+      		<input type="text" name="two_points" class="form-control" value="{{ player.two_points}}" >
+    	</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-2">
+    	<div class="form-group">
+      		<label for="user"> One on One ability (1-10):</label>
+      		<input type="text" name="one_on_one" class="form-control" value="{{ player.one_on_one}}" >
+    	</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-2">
+    	<div class="form-group">
+      		<label for="user"> defense ability (1-10):</label>
+      		<input type="text" name="defense" class="form-control" value="{{ player.defense}}">
+    	</div>
+	</div>
+</div>
+
+<input type="submit" value="Edit Player">
+
+</div>
+</body>
+</html>
