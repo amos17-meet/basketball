@@ -158,9 +158,9 @@ function drop(ev) {
 
     <div class="col-md-2">
         <p>position 5</p>
-        <select>
+        <select class= "form-group">
             {%for player in players%}
-            <div class= "form-group">
+            <div>
             <option value="{{player.name}}" name=position_5>{{player.name}}</option>
                 {{player.name}}
             </div>
@@ -169,7 +169,7 @@ function drop(ev) {
         
     </div>
 </div>
-<input type="submit" value="Find Ditails">
+<input type="submit" value="Find Ditails" class="btn btn-info">
 </form>
 
 
