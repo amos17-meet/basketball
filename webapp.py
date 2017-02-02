@@ -48,6 +48,20 @@ def build_starting_5():
 		players=coach.players
 		if request.method=='GET':
 			return render_template("build_starting_5.html", players=players)
+		else:
+			position_1=request.form['position_1']
+			position_2=request.form['position_2']
+			position_3=request.form['position_3']
+			position_4=request.form['position_4']
+			position_5=request.form['position_5']
+			player_1=session.query(Player).filter_by(name=position_1)
+			player_2=session.query(Player).filter_by(name=position_2)
+			player_3=session.query(Player).filter_by(name=position_3)
+			player_4=session.query(Player).filter_by(name=position_4)
+			player_5=session.query(Player).filter_by(name=position_5)
+			players=[palyer_1,player_2,player_3,player_4,player_5]
+			details=startind_5_details(players)
+			return redirect('build_starting_5', details=details)
 
 	return redirect(url_for('login'))
 

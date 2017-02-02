@@ -60,7 +60,7 @@ function drop(ev) {
         {%for player in players%}
         <div class="row">
             <div class="col-md-2" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <a href="{{url_for('player', player_id = player.id)}}" draggable="true" ondragstart="drag(event)" id="drag1">
                     <li> <p>{{player.name}}</p></li></a>
                 </div>
@@ -68,20 +68,11 @@ function drop(ev) {
         </div>
         {%endfor%}
     </ul>
-</div>
 
-<div class="container-fluid">
-    <ul>
-        {%for detail in details%}
-        <div class="row">
-            <div class="col-md-2">
-            <li> <p>{{detail}}</p></li>
-            </div>
-        </div>
-        {%endfor%}
-    </ul>
-</div>
 
+
+    
+<!--
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-2">
@@ -109,14 +100,98 @@ function drop(ev) {
         <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
     </div>
 </div>
+!-->
+<form role="form" action="{{url_for('build_starting_5')}}" method="post">
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-2">
+        <p>position 1</p>
+        <select>
+            {%for player in players%}
+            <div class= "form-group">
+            <option value="{{player.name}}" name=position_1>{{player.name}}</option>
+                {{player.name}}
+            </div>
+            {%endfor%}
+        </select>
+        
+    </div>
+
+    <div class="col-md-2">
+        <p>position 2</p>
+        <select>
+            {%for player in players%}
+            <div class= "form-group">
+            <option value="{{player.name}}" name=position_2>{{player.name}}</option>
+                {{player.name}}
+            </div>
+            {%endfor%}
+        </select>
+        
+    </div>
+
+    <div class="col-md-2">
+        <p>position 3</p>
+        <select>
+            {%for player in players%}
+            <div class= "form-group">
+            <option value="{{player.name}}" name=position_3>{{player.name}}</option>
+                {{player.name}}
+            </div>
+            {%endfor%}
+        </select>
+        
+    </div>
+
+    <div class="col-md-2">
+        <p>position 4</p>
+        <select class="form-group">
+            {%for player in players%}
+            <div class= "form-group">
+            <option value="{{player.name}}" name=position_4>{{player.name}}</option>
+                {{player.name}}
+            </div>
+            {%endfor%}
+        </select>
+        
+    </div>
+
+    <div class="col-md-2">
+        <p>position 5</p>
+        <select>
+            {%for player in players%}
+            <div class= "form-group">
+            <option value="{{player.name}}" name=position_5>{{player.name}}</option>
+                {{player.name}}
+            </div>
+            {%endfor%}
+        </select>
+        
+    </div>
+</div>
+<input type="submit" value="Find Ditails">
+</form>
 
 
-<div class="container-fluid">
+
 <a href="{{ url_for('create_player') }}" value=Cancel class="btn btn-info">Create Player</a>
 <br>
 <a href="{{ url_for('starting_5s') }}" value=Cancel class="btn btn-info">My starting 5</a>
 <br>
 <a href="{{ url_for('my_players') }}" value=Cancel class="btn btn-info">My players</a>
+
+<ul>
+        {%for detail in details%}
+        <div class="row">
+            <div class="col-md-2">
+            <li> <p>{{detail}}</p></li>
+            </div>
+        </div>
+        {%endfor%}
+    </ul>
+
+
+
 </div>
 </body>
 </html>
