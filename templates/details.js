@@ -24,16 +24,8 @@ function startind_5_details(players) {
 
 	for(var i=0;i<5;i++){
 		three_points_average=three_points_average+players[i].three_points;
-	}
-	for(var i=0;i<5;i++){
 		two_points_average=three_points_average+players[i].two_points;
-	}
-
-	for(var i=0;i<5;i++){
 		defense_average=three_points_average+players[i].defense;
-	}
-
-	for(var i=0;i<5;i++){
 		one_on_one_average=three_points_average+players[i].one_on_one;
 	}
 
@@ -87,7 +79,6 @@ function startind_5_details(players) {
 
 }
 
-players=session.query(Player).all()
 
-alart("hiiiiiiii")
-document.write(startind_5_details(players))
+
+

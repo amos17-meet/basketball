@@ -45,11 +45,16 @@ def login():
 def build_starting_5():
 	if 'email' in login_session:
 		coach=session.query(Coach).filter_by(email=login_session['email']).first()
+		players=coach.players
 		if request.method=='GET':
-			return render_template("build_starting_5.html")
+			return render_template("build_starting_5.html", players=players)
 
 	return redirect(url_for('login'))
 
+@app.route('/starting_5_details', methods = ['GET','POST'])
+def starting_5_details(players):
+	details=startind_5_details(players)
+	return render_template('build_starting_5', details=details)
 
 
 
@@ -176,6 +181,78 @@ def edit_player(player_id):
 
 		
 
+def startind_5_details(players):
+	three_points_abilities=""
+	two_points_abilities=""
+	defense_abilities=""
+	three_points_abilities=""
+	one_on_one_abilities=""
+
+	three_points_average=0
+	two_points_average=0
+	defense_average=0
+	one_on_one_average=0
+
+	startind_5_details=[]
+
+	for player in players:
+		three_points_average=three_points_average+player.three_points
+		two_points_average=three_points_average+player.two_points
+		defense_average=three_points_average+player.defense
+		one_on_one_average=three_points_average+player.one_on_one
+	
+
+	if three_points_average>=8:
+		three_points_abilities="High chance for thre."
+	
+	elif three_points_average>4 and three_points_average<8:
+		three_points_abilities="Mediume chance for three."
+	
+	else:
+		three_points_abilities="Low chance for three."
+	
+
+
+	if two_points_average>=8:
+		three_points_abilities="high chance for two points."
+	
+	elif two_points_average>4 and two_points_average<8:
+		three_points_abilities="mediume chance for two points."
+	
+	else:
+		three_points_abilities="low chance for two points."
+	
+
+	if defense_average>=8:
+		defense_abilities="very good defense."
+	
+	elif defense_average>4 and defense_average<8:
+		defense_abilities="good defense."
+	
+	else:
+		defense_abilities="bad defense."
+	
+
+	if one_on_one_average>=8:
+		one_on_one_abilities="very good one on one abilities."
+	
+	elif one_on_one_average>4 and one_on_one_average<8:
+		one_on_one_abilities="good one on one abilities."
+	
+	else:
+		one_on_one_abilities="bad one on one abilities."
+	
+
+
+	startind_5_details.append(three_points_abilities)
+	startind_5_details.append(two_points_abilities)
+	startind_5_details.append(one_on_one_abilities)
+	startind_5_details.append(defense_abilities)
+	
+	
+	
+
+	return startind_5_details
 
 
 
