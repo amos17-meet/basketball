@@ -30,6 +30,7 @@ class Player(Base):
     __tablename__ = 'player'
     id = Column(Integer, primary_key=True)
     name=Column(String)
+    unique_name=Column(String)
     #coach_id=Column(Integer, ForeignKey('coach.id'))
     coach_id = Column(Integer, ForeignKey("coach.id"))
     coach = relationship("Coach", back_populates="players")

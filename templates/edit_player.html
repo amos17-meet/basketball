@@ -12,6 +12,40 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
 </head>
 <body>
+
+<nav class="navbar navbar-default nuabars">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{ url_for('build_starting_5') }}" class="btn btn-info" role="button">Find Your Best Starting 5 &nbsp;&nbsp;|</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        <li><a href ="{{ url_for('starting_5s') }}" role="button">My Starting 5s &nbsp;&nbsp;&nbsp;|</a></li>
+        <li><a href="{{ url_for('create_player') }}" role="button">Create Player &nbsp;&nbsp;&nbsp;|</a></li>
+
+
+        
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{ url_for('logout') }}" role="button" type="sumbit">Logout</a></li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
 <div class="container-fluid">
 <h1>{{player.name}}</h1>
 <div class = 'flash'>
@@ -32,60 +66,78 @@
 
 
 <div class="row">
-	<div class="col-md-2">
-		<div class="form-group">
-  			<label for="user">Player's Name:</label>
-  			<input type="text" name="name" class="form-control" value="{{ player.name}}" >
-
-		</div>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-md-2">
-    	<div class="form-group">
-      		<label for="user">Player's Position:</label>
-      		<input type="emtextail" name="position" class="form-control" value="{{ player.player_position}}" >
-    	</div>
-	</div>
+  <div class="col-md-3">
+      <div class="form-group">
+          <label for="user">%P3:</label>
+          <input type="text" name="three_points" class="form-control" >
+      </div>
+  </div>
 </div>
 
 
 <div class="row">
-	<div class="col-md-2">
-    	<div class="form-group">
-      		<label for="user">%P3:</label>
-      		<input type="text" name="three_points" class="form-control" value="{{ player.three_points}}"  >
-    	</div>
-	</div>
+  <div class="col-md-3">
+      <div class="form-group">
+          <label for="user"> %PG:</label>
+          <input type="text" name="two_points" class="form-control" >
+      </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+      <div class="form-group">
+        <label for="user">Player's Position</label>
+          <select name="position">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+      </div>
+  </div>
 </div>
 
 
 <div class="row">
-	<div class="col-md-2">
-    	<div class="form-group">
-      		<label for="user"> %PG:</label>
-      		<input type="text" name="two_points" class="form-control" value="{{ player.two_points}}" >
-    	</div>
-	</div>
+  <div class="col-md-3">
+      <div class="form-group">
+          <label for="user"> One on One ability (1-10)</label>
+          <select name="one_on_one">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+      </div>
+  </div>
 </div>
 
 <div class="row">
-	<div class="col-md-2">
-    	<div class="form-group">
-      		<label for="user"> One on One ability (1-10):</label>
-      		<input type="text" name="one_on_one" class="form-control" value="{{ player.one_on_one}}" >
-    	</div>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-md-2">
-    	<div class="form-group">
-      		<label for="user"> defense ability (1-10):</label>
-      		<input type="text" name="defense" class="form-control" value="{{ player.defense}}">
-    	</div>
-	</div>
+  <div class="col-md-3">
+      <div class="form-group">
+          <label for="user"> defense ability (1-10)</label>
+          <select name="defense">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+      </div>
+  </div>
 </div>
 
 <input type="submit" value="Edit Player">

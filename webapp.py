@@ -48,6 +48,7 @@ def build_starting_5():
 		players=coach.players
 		if request.method=='GET':
 			return render_template("build_starting_5.html", players=players)
+		'''
 		else:
 			position_1=request.form['position_1']
 			position_2=request.form['position_2']
@@ -62,14 +63,41 @@ def build_starting_5():
 			players=[palyer_1,player_2,player_3,player_4,player_5]
 			details=startind_5_details(players)
 			return redirect('build_starting_5', details=details)
-
+		'''
 	return redirect(url_for('login'))
 
 @app.route('/starting_5_details', methods = ['GET','POST'])
-def starting_5_details(players):
-	details=startind_5_details(players)
-	return render_template('build_starting_5', details=details)
+def starting_5_details():
+	print("amos")
+	print(request.method)
+	if 'email' in login_session:
+		coach=session.query(Coach).filter_by(email=login_session['email']).first()
+		coach_players=coach.players
+		print(coach_players)
+		print("email")
+		if request.method=='GET':
+			return render_template('build_starting_5.html',players=coach_players)
 
+		else:
+			players=[]
+			print(startind_5_details(players))
+			print("before")
+			position_1=request.form['position_1']
+			print("position 1")
+			position_2=request.form['position_2']
+			position_3=request.form['position_3']
+			position_4=request.form['position_4']
+			position_5=request.form['position_5']
+			player_1=session.query(Player).filter_by(unique_name=position_1).first()
+			player_2=session.query(Player).filter_by(unique_name=position_2).first()
+			player_3=session.query(Player).filter_by(unique_name=position_3).first()
+			player_4=session.query(Player).filter_by(unique_name=position_4).first()
+			player_5=session.query(Player).filter_by(unique_name=position_5).first()
+			players=[player_1,player_2,player_3,player_4,player_5]
+			details=startind_5_details(players)
+			print(details)
+			return render_template('build_starting_5.html', players=coach_players,details=details)
+	return redirect(url_for('login'))
 
 
 @app.route('/singup', methods=['GET','POST'])
@@ -106,6 +134,7 @@ def create_player():
 		else:
 			print("name")
 			name=request.form['name']
+			unique_name=request.form['unique_name']
 			print("position")
 			player_position=request.form['position']
 			print("two")
@@ -122,6 +151,7 @@ def create_player():
 				return redirect(url_for('create_player'))
 			else:
 				new_player= Player(name=name,
+									unique_name=unique_name,
 									player_position=player_position,
 									two_points=two_points,
 									three_points=three_points,
@@ -177,6 +207,7 @@ def edit_player(player_id):
 			return render_template('edit_player.html', player=player)
 		else:
 			new_name=request.form['name']
+			new_unique_name=request.form['unique_name']
 			new_player_position=request.form['position']
 			new_two_points=request.form['two_points']
 			new_three_points=request.form['three_points']
@@ -191,7 +222,11 @@ def edit_player(player_id):
 			session.commit()
 			return redirect('player', player_id=player.id)
 
-
+@app.route('/logout')
+def logout():
+    # remove the username from the session if it's there
+    login_session.pop('username', None)
+    return redirect(url_for('login'))
 
 		
 
@@ -208,33 +243,43 @@ def startind_5_details(players):
 	one_on_one_average=0
 
 	startind_5_details=[]
-
+	print(players)
 	for player in players:
-		three_points_average=three_points_average+player.three_points
-		two_points_average=three_points_average+player.two_points
-		defense_average=three_points_average+player.defense
-		one_on_one_average=three_points_average+player.one_on_one
+		print("player")
+		print(player)
+		three_points_average=three_points_average+int(player.three_points)
+		two_points_average=two_points_average+int(player.two_points)
+		defense_average=defense_average+int(player.defense)
+		one_on_one_average=one_on_one_average+int(player.one_on_one)
+
+
+	three_points_average=three_points_average/5.0
+	two_points_average=two_points_average/5.0
+	defense_average=defense_average/5.0
+	one_on_one_average=one_on_one_average/5.0
+
 	
 
-	if three_points_average>=8:
-		three_points_abilities="High chance for thre."
+	if three_points_average>=40:
+		three_points_abilities="High chance for three points."
 	
-	elif three_points_average>4 and three_points_average<8:
-		three_points_abilities="Mediume chance for three."
+	elif three_points_average>30 and three_points_average<40:
+		print("three points is here")
+		three_points_abilities="Mediume chance for three points."
 	
 	else:
-		three_points_abilities="Low chance for three."
+		three_points_abilities="Low chance for three points."
 	
 
 
-	if two_points_average>=8:
-		three_points_abilities="high chance for two points."
+	if two_points_average>=60:
+		two_points_abilities="high chance for two points."
 	
-	elif two_points_average>4 and two_points_average<8:
-		three_points_abilities="mediume chance for two points."
+	elif two_points_average>45 and two_points_average<60:
+		two_points_abilities="mediume chance for two points."
 	
 	else:
-		three_points_abilities="low chance for two points."
+		two_points_abilities="low chance for two points."
 	
 
 	if defense_average>=8:

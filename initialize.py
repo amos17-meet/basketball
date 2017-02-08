@@ -22,6 +22,7 @@ amos=Coach(name="amos",
 team1=Starting_5 (name="1")
 
 ido=Player(name="ido",
+	unique_name="ido_1",
 	player_position=1,
 	three_points=40,
 	two_points=50,
