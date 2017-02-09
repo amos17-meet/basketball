@@ -12,8 +12,8 @@
     <!-- Latest compiled JavaScript --> 
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
 <style>
-#makeMeDraggable { float: width: 100px; height: 50px; }
-#makeMeDroppable { float: left; width: 100px; height: 100px; border: 1px solid #999; }
+#makeMeDraggable {  width: 100px; height: 100px; }
+#makeMeDroppable {  width: 100px; height: 100px; border: 1px solid #999; }
 </style>
  
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
@@ -86,8 +86,7 @@ function handleDropEvent( event, ui ) {
     {% endwith %}
 
 </div>
-<div id="content" style="height: 400px;">
- 
+
 <div class="container-fluid">
     <ul>
         {%for player in players%}
@@ -102,7 +101,7 @@ function handleDropEvent( event, ui ) {
         </div>
         {%endfor%}
     </ul>
-</div>
+
 
  
   <div id="makeMeDroppable"> </div>
@@ -173,6 +172,18 @@ function handleDropEvent( event, ui ) {
 </div>
 </form>
 
+<form role="form" action="{{url_for('save_starting_5')}}" method="post">
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="user">Starting 5's Name:</label>
+            <input type="text" name="team_name" class="form-control" >
+
+        </div>
+    </div>
+</div>
+<input type="submit" value="Save_startin_5" class="btn btn-info">
+</form>
 
 </div>
     <ul>

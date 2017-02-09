@@ -43,6 +43,8 @@ def login():
 
 @app.route('/build_starting_5', methods = ['GET','POST'])
 def build_starting_5():
+	print("hereeee")
+	print(login_session)
 	if 'email' in login_session:
 		coach=session.query(Coach).filter_by(email=login_session['email']).first()
 		players=coach.players
@@ -83,21 +85,67 @@ def starting_5_details():
 			print(startind_5_details(players))
 			print("before")
 			position_1=request.form['position_1']
-			print("position 1")
 			position_2=request.form['position_2']
 			position_3=request.form['position_3']
 			position_4=request.form['position_4']
 			position_5=request.form['position_5']
+
 			player_1=session.query(Player).filter_by(unique_name=position_1).first()
 			player_2=session.query(Player).filter_by(unique_name=position_2).first()
 			player_3=session.query(Player).filter_by(unique_name=position_3).first()
 			player_4=session.query(Player).filter_by(unique_name=position_4).first()
 			player_5=session.query(Player).filter_by(unique_name=position_5).first()
+
+			login_session['position_1']=player_1.unique_name
+			login_session['position_2']=player_2.unique_name
+			login_session['position_3']=player_3.unique_name
+			login_session['position_4']=player_4.unique_name
+			login_session['position_5']=player_5.unique_name
 			players=[player_1,player_2,player_3,player_4,player_5]
 			details=startind_5_details(players)
-			print(details)
+			login_session['details']=details
+			print(login_session)
 			return render_template('build_starting_5.html', players=coach_players,details=details)
 	return redirect(url_for('login'))
+
+@app.route('/save_starting_5', methods = ['GET','POST'])
+def save_starting_5():
+	if 'email' in login_session:
+		coach=session.query(Coach).filter_by(email=login_session['email']).first()
+		coach_players=coach.players
+		print(coach_players)
+		print("email")
+		if request.method=='GET':
+			return render_template('build_starting_5.html',players=coach_players)
+		else:
+			player_1=login_session['position_1']
+			player_2=login_session['position_2']
+			player_3=login_session['position_3']
+			player_4=login_session['position_4']
+			player_5=login_session['position_5']
+			print(player_1)
+			details=login_session['details']
+
+			player_1=session.query(Player).filter_by(unique_name=player_1).first()
+			player_2=session.query(Player).filter_by(unique_name=player_2).first()
+			player_3=session.query(Player).filter_by(unique_name=player_3).first()
+			player_4=session.query(Player).filter_by(unique_name=player_4).first()
+			player_5=session.query(Player).filter_by(unique_name=player_5).first()
+			print(player_1)
+			team_name=request.form['team_name']
+
+			new_team=Starting_5(coach=coach,
+								name=team_name,
+								players=[player_1,player_2,player_3,player_4,player_5]
+								)
+
+			session.add(new_team)
+			coach.starting_5s.append(new_team)
+			print(new_team.players)
+			session.commit()
+			return render_template('build_starting_5.html', players=coach_players,details=details)
+
+
 
 
 @app.route('/singup', methods=['GET','POST'])
@@ -172,7 +220,7 @@ def starting_5s():
 		print("hereeee")
 		coach=session.query(Coach).filter_by(email=login_session['email']).first()
 		starting_5s = coach.starting_5s
-		print(starting_5s)
+		print(starting_5s[0].players)
 		return render_template('starting_5s.html',starting_5s=starting_5s)
 
 	return redirect(url_for('login'))
@@ -245,8 +293,6 @@ def startind_5_details(players):
 	startind_5_details=[]
 	print(players)
 	for player in players:
-		print("player")
-		print(player)
 		three_points_average=three_points_average+int(player.three_points)
 		two_points_average=two_points_average+int(player.two_points)
 		defense_average=defense_average+int(player.defense)

@@ -67,7 +67,7 @@
 		{%for starting_5 in starting_5s %}
 			<ul>
 				{%for player in starting_5.players%}
-					<a href="{{url_for('player', player_id = player.id)}}" draggable="true" ondragstart="drag(event)" id="drag1">
+					<a href="{{url_for('player', player_id = player.id)}}">
                      <h4>{{player.name}}</h4></a>
 				{%endfor%}
 			</ul>
