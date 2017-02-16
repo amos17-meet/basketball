@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>build</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css') }}">
     <link rel="stylesheet" href="styles/styles.css">
     <meta charset="utf-­‐8"> 
     <meta name=“viewport” content=“width= device-width, initial scale=1.0”> 
@@ -93,26 +94,23 @@ function handleDropEvent( event, ui ) {
         <div class="row">
             <div class="col-md-10"></div>
             <div class="col-md-2">
-            <div id="makeMeDraggable"> 
                     <a href="{{url_for('player', player_id = player.id)}}">
                     <h4>{{player.name}}</h4></a> 
-            </div>   
             </div>
         </div>
         {%endfor%}
     </ul>
 
-
- 
-  <div id="makeMeDroppable"> </div>
- 
 </div>
 
 
     
 
+    
+<div class="container">
 <form role="form" action="{{url_for('starting_5_details')}}" method="post">
 <div class="form-group">
+<div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-2">
         <p>position 1</p>
@@ -159,11 +157,12 @@ function handleDropEvent( event, ui ) {
             {%endfor%}
         </select>
     </div>
-</div>    
+</div>  
+</div> 
+
+<div class="row">
 </div>
 
-<br>
-<br>
 <div class="row">
     <div class="col-md-9"></div>
     <div class="col-md-2">
@@ -172,9 +171,11 @@ function handleDropEvent( event, ui ) {
 </div>
 </form>
 
+
 <form role="form" action="{{url_for('save_starting_5')}}" method="post">
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-1"></div>
+    <div class="col-md-2">
         <div class="form-group">
             <label for="user">Starting 5's Name:</label>
             <input type="text" name="team_name" class="form-control" >
@@ -182,10 +183,12 @@ function handleDropEvent( event, ui ) {
         </div>
     </div>
 </div>
+<div class="col-md-1"></div>
+
 <input type="submit" value="Save_startin_5" class="btn btn-info">
 </form>
 
-</div>
+<div>
     <ul>
         {%for detail in details%}
         <div class="row">
@@ -196,7 +199,7 @@ function handleDropEvent( event, ui ) {
         </div>
         {%endfor%}
     </ul>
-
+</div>
 
 
 </div>

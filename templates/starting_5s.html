@@ -64,14 +64,21 @@
 
 <div class="container-fluid">
 	<div>
+	<div class="row">
 		{%for starting_5 in starting_5s %}
+			<div class="col-md-2">
 			<ul>
+			<h3>{{starting_5.name}}<h3>
+							
 				{%for player in starting_5.players%}
 					<a href="{{url_for('player', player_id = player.id)}}">
                      <h4>{{player.name}}</h4></a>
 				{%endfor%}
+			</div>
 			</ul>
+
 		{%endfor%}	
+	</div>
 	</div>
 </div>
 </body>
