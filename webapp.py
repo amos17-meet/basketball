@@ -84,7 +84,11 @@ def starting_5_details():
 			players=[]
 			print(startind_5_details(players))
 			print("before")
+			if request.form['position_1']=="" or request.form['position_2']=="" or request.form['position_3']=="" or request.form['position_4']=="" or request.form['position_5']=="":
+				flash("missing players")
+				return redirect(url_for('build_starting_5'))
 			position_1=request.form['position_1']
+			print("after")
 			position_2=request.form['position_2']
 			position_3=request.form['position_3']
 			position_4=request.form['position_4']
