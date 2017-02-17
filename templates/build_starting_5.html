@@ -2,8 +2,7 @@
 <html>
 <head>
 	<title>build</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css') }}">
-    <link rel="stylesheet" href="styles/styles.css">
+    
     <meta charset="utf-­‐8"> 
     <meta name=“viewport” content=“width= device-width, initial scale=1.0”> 
     <!-- Latest compiled and minified CSS --> 
@@ -102,9 +101,8 @@ function handleDropEvent( event, ui ) {
     </ul>
 
 </div>
-
-
-    
+<<img src="https://github.com/amos17-meet/basketball/blob/master/styles/Untitled%20design-1.jpg?raw=true" alt="board" style="position:absolute;left:250px;top:50px;width:800px;">
+  
 
     
 <div class="container">
@@ -113,8 +111,8 @@ function handleDropEvent( event, ui ) {
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-2">
-        <p>position 1</p>
-        <select name="position_1">
+        <h5 style="position:absolute;left:420px;top:-70px;">PG</h5>
+        <select name="position_1" style="position:absolute;left:420px;top:-40px;">
             <option value=""> </option>
             {%for player in players%}
             <option value="{{player.unique_name}}">{{player.unique_name}}</option>
@@ -123,8 +121,8 @@ function handleDropEvent( event, ui ) {
     </div>
 
     <div class="col-md-2">
-        <p>position 2</p>
-        <select name="position_2">
+        <h5  style="position:absolute;left:-10px;top:20px;">SG</h5>
+        <select name="position_2" style="position:absolute;left:-10px;top:50px;">
             <option value=""> </option>
             {%for player in players%}
             <option value="{{player.unique_name}}">{{player.unique_name}}</option>
@@ -134,8 +132,8 @@ function handleDropEvent( event, ui ) {
     </div>
 
     <div class="col-md-2">
-        <p>position 3</p>
-        <select name="position_3">
+        <h5 style="position:absolute;left:250px;top:20px;">SF</h5>
+        <select name="position_3" style="position:absolute;left:250px;top:50px;">
             <option value=""> </option>
             {%for player in players%}
             <option value="{{player.unique_name}}">{{player.unique_name}}</option>
@@ -144,8 +142,8 @@ function handleDropEvent( event, ui ) {
     </div>
 
     <div class="col-md-2">
-        <p>position 4</p>
-        <select name="position_4">
+        <h5 style="position:absolute;left:-200px;top:20px;">PF</h5>
+        <select name="position_4" style="position:absolute;left:-200px;top:50px;">
             <option value=""> </option>
             {%for player in players%}
             <option value="{{player.unique_name}}">{{player.unique_name}}</option>
@@ -154,8 +152,8 @@ function handleDropEvent( event, ui ) {
     </div>
 
     <div class="col-md-2">
-        <p>position 5</p>
-        <select name="position_5">
+        <h5 style="position:absolute;left:-210px;top:170px;">C</h5>
+        <select name="position_5" style="position:absolute;left:-220px;top:200px;">
             <option value=""> </option>
             {%for player in players%}
             <option value="{{player.unique_name}}">{{player.unique_name}}</option>
@@ -166,6 +164,18 @@ function handleDropEvent( event, ui ) {
 </div> 
 
 <div class="row">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 </div>
 
 <div class="row">
